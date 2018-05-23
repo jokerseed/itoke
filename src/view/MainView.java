@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import entity.Movie;
 import entity.User;
 import util.ReadAndWrite;
 
@@ -32,6 +33,11 @@ public class MainView {
 		}
 	}
 	public void init() {
-		new ReadAndWrite<User>().writeObiect(new ArrayList<User>(), new File("src\\source\\users.txt"));
+		if(new ReadAndWrite<User>().readObject(new File("src\\source\\users.txt"))==null) {
+			new ReadAndWrite<User>().writeObiect(new ArrayList<User>(), new File("src\\source\\users.txt"));
+		}
+		if(new ReadAndWrite<Movie>().readObject(new File("src\\source\\movies.txt"))==null) {
+			new ReadAndWrite<Movie>().writeObiect(new ArrayList<Movie>(), new File("src\\source\\movies.txt"));
+		}
 	}
 }
