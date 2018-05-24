@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import entity.Cinema;
+import entity.Hall;
 import entity.Movie;
 import entity.User;
 
@@ -26,6 +27,7 @@ public class MyUtil {
 		}
 		new ReadAndWrite<Movie>().writeObiect(array, f);
 	}
+	//更新cinema的id
 	public void refreshCinemaId() {
 		File f=new File("src\\source\\cinemas.txt");
 		ArrayList<Cinema> array=new ReadAndWrite<Cinema>().readObject(f);
@@ -33,5 +35,28 @@ public class MyUtil {
 			m.setId(array.indexOf(m));
 		}
 		new ReadAndWrite<Cinema>().writeObiect(array, f);
+	}
+	//更新hall的cid
+	public void refreshHallCid(String name) {
+		File f=new File("src\\source\\cinemas.txt");
+		File f1=new File("src\\source\\halls.txt");
+		ArrayList<Cinema> array=new ReadAndWrite<Cinema>().readObject(f);
+		ArrayList<Hall> array1=new ReadAndWrite<Hall>().readObject(f1);
+		int index=array.indexOf(new Cinema(name));
+		for(int i=index;i<array.size();i++) {
+			for(Hall h:array1) {
+				if(h.getCid()==array.get(i).getId()) {
+					h.setCid(array.get(i).getId()-1);
+				}
+			}
+		}
+	}
+	public void refreshHallId() {
+		File f=new File("src\\source\\halls.txt");
+		ArrayList<Hall> array=new ReadAndWrite<Hall>().readObject(f);
+		for(Hall m:array) {
+			m.setId(array.indexOf(m));
+		}
+		new ReadAndWrite<Hall>().writeObiect(array, f);
 	}
 }

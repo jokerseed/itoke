@@ -3,14 +3,17 @@ package view;
 import java.util.Scanner;
 
 import bizImpl.CinemaBizImpl;
+import bizImpl.HallBizImpl;
 import bizImpl.MovieBizImpl;
 import entity.Cinema;
+import entity.Hall;
 import entity.Movie;
 
 public class AdminView {
 	Scanner scn=new Scanner(System.in);
 	MovieBizImpl mbi=new MovieBizImpl();
 	CinemaBizImpl cbi=new CinemaBizImpl();
+	HallBizImpl hbi=new HallBizImpl();
 	public void adminView() {
 		while(true) {
 			adminLogin();
@@ -32,7 +35,7 @@ public class AdminView {
 	//管理员操作选择
 	public void adminOperation() {
 		while(true) {
-			System.out.println("1.管理电影2.管理影院3.管理场厅");
+			System.out.println("1.管理电影2.管理影院3.管理场厅4.管理场次");
 			int option=scn.nextInt();
 			switch(option) {
 			case 1:
@@ -43,6 +46,9 @@ public class AdminView {
 				break;
 			case 3:
 				hallManager();
+				break;
+			case 4:
+				SessionManager();
 				break;
 			default:
 				System.out.println("输入错误，重新输入");
@@ -56,21 +62,65 @@ public class AdminView {
 			int option=scn.nextInt();
 			switch(option) {
 			case 1:
-				//addHall();
+				addHall();
 				break;
 			case 2:
-				//deleHall();
+				deleHall();
 				break;
 			case 3:
-				//updateHall();
+				updateHall();
 				break;
 			case 4:
-				//findHall();
+				findHall();
 				break;
 			default:
 				System.out.println("输入错误，重新输入");
 				break;
 			}
+		}
+	}
+	private void updateHall() {
+		System.out.println("需要修改的场厅名字");
+		String name1=scn.next();
+		System.out.println("需要修改的场厅所属影院");
+		int cid1=scn.nextInt();
+		System.out.println("场厅名字");
+		String name=scn.next();
+		System.out.println("场厅所属影院");
+		int cid=scn.nextInt();
+		System.out.println("场厅容量");
+		int capacity=scn.nextInt();
+		if(hbi.update(new Hall(name1,cid), new Hall(name,cid,capacity))) {
+			System.out.println("修改成功");
+		}else {
+			System.out.println("修改失败");
+		}
+	}
+	private void findHall() {
+		hbi.find();
+	}
+	private void deleHall() {
+		System.out.println("场厅名字");
+		String name=scn.next();
+		System.out.println("场厅所属影院");
+		int cid=scn.nextInt();
+		if(hbi.deleHall(name, cid)) {
+			System.out.println("删除成功");
+		}else {
+			System.out.println("删除失败");
+		}
+	}
+	private void addHall() {
+		System.out.println("场厅名字");
+		String name=scn.next();
+		System.out.println("场厅所属影院");
+		int cid=scn.nextInt();
+		System.out.println("场厅容量");
+		int capacity=scn.nextInt();
+		if(hbi.addHall(new Hall(name,cid,capacity))) {
+			System.out.println("添加成功");
+		}else {
+			System.out.println("添加失败");
 		}
 	}
 	public void cinemaManager() {

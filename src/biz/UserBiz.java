@@ -1,6 +1,5 @@
 package biz;
 
-import entity.User;
 
 public interface UserBiz {
 	public boolean login(String name,String passed);//µÇÂ½

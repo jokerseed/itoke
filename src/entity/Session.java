@@ -1,8 +1,9 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Session {
+public class Session implements Serializable{
 	private int id;
 	private int hid;
 	private int cid;

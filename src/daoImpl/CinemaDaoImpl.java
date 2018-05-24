@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import dao.CinemaDao;
 import entity.Cinema;
-import entity.Movie;
 import util.ReadAndWrite;
 
 public class CinemaDaoImpl implements CinemaDao{

@@ -1,6 +1,5 @@
 package biz;
 
-import entity.Cinema;
 import entity.Hall;
 
 public interface HallBiz {

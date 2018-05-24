@@ -5,7 +5,6 @@ import java.io.File;
 import biz.CinemaBiz;
 import daoImpl.CinemaDaoImpl;
 import entity.Cinema;
-import entity.Movie;
 import util.MyUtil;
 import util.add_dele_up_find;
 
@@ -31,6 +30,8 @@ public class CinemaBizImpl implements CinemaBiz{
 		if(cdi.findByCinemaName(name)) {
 			File f=new File("src\\source\\cinemas.txt");
 			new add_dele_up_find<Cinema>().dele(new Cinema(name), f);
+			//更新Hall中的cid
+			new MyUtil().refreshHallCid(name);
 			new MyUtil().refreshCinemaId();
 			is=true;
 		}

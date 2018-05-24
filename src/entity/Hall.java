@@ -1,6 +1,8 @@
 package entity;
 
-public class Hall {
+import java.io.Serializable;
+
+public class Hall implements Serializable{
 	private int id;
 	private String name;
 	private int cid;
