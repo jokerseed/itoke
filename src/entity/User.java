@@ -8,6 +8,7 @@ public class User implements Serializable{
 	private String psswd;
 	private int level;//vip等级
 	private double balance;//用户账户余额
+	private double total;
 	public int getId() {
 		return id;
 	}
@@ -38,12 +39,47 @@ public class User implements Serializable{
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
-	public User(String name, String psswd, int level, double balance) {
+	
+	public double getTotal() {
+		return total;
+	}
+	public void setTotal(double total) {
+		this.total = total;
+	}
+	public User(String name, String psswd, int level, double balance,double total) {
 		super();
 		this.name = name;
 		this.psswd = psswd;
 		this.level = level;
 		this.balance = balance;
+		this.total=total;
+	}
+	public User(String name, String psswd) {
+		super();
+		this.name = name;
+		this.psswd = psswd;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (psswd == null) {
+			if (other.psswd != null)
+				return false;
+		} else if (!psswd.equals(other.psswd))
+			return false;
+		return true;
 	}
 	
 }

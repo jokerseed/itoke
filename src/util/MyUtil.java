@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import entity.Cinema;
 import entity.Hall;
 import entity.Movie;
+import entity.Session;
+import entity.Ticket;
 import entity.User;
 
 public class MyUtil {
@@ -58,5 +60,27 @@ public class MyUtil {
 			m.setId(array.indexOf(m));
 		}
 		new ReadAndWrite<Hall>().writeObiect(array, f);
+	}
+	//∑µªÿ…œ“ª≤„
+	public boolean getBack() {
+		boolean is=false;
+		
+		return is;
+	}
+	public void refreshSessionId() {
+		File f=new File("src\\source\\sessions.txt");
+		ArrayList<Session> array=new ReadAndWrite<Session>().readObject(f);
+		for(Session m:array) {
+			m.setId(array.indexOf(m));
+		}
+		new ReadAndWrite<Session>().writeObiect(array, f);
+	}
+	public void refreshTicketId() {
+		File f=new File("src\\source\\tickets.txt");
+		ArrayList<Ticket> array=new ReadAndWrite<Ticket>().readObject(f);
+		for(Ticket m:array) {
+			m.setId(array.indexOf(m));
+		}
+		new ReadAndWrite<Ticket>().writeObiect(array, f);
 	}
 }

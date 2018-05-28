@@ -7,6 +7,8 @@ import java.util.Scanner;
 import entity.Cinema;
 import entity.Hall;
 import entity.Movie;
+import entity.Session;
+import entity.Ticket;
 import entity.User;
 import util.ReadAndWrite;
 
@@ -46,6 +48,12 @@ public class MainView {
 		}
 		if(new ReadAndWrite<Hall>().readObject(new File("src\\source\\halls.txt"))==null) {
 			new ReadAndWrite<Hall>().writeObiect(new ArrayList<Hall>(), new File("src\\source\\halls.txt"));
+		}
+		if(new ReadAndWrite<Session>().readObject(new File("src\\source\\sessions.txt"))==null) {
+			new ReadAndWrite<Session>().writeObiect(new ArrayList<Session>(), new File("src\\source\\sessions.txt"));
+		}
+		if(new ReadAndWrite<Ticket>().readObject(new File("src\\source\\tickets.txt"))==null) {
+			new ReadAndWrite<Ticket>().writeObiect(new ArrayList<Ticket>(), new File("src\\source\\tickets.txt"));
 		}
 	}
 }

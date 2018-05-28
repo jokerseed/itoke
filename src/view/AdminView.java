@@ -5,6 +5,8 @@ import java.util.Scanner;
 import bizImpl.CinemaBizImpl;
 import bizImpl.HallBizImpl;
 import bizImpl.MovieBizImpl;
+import bizImpl.SessionBizImpl;
+import bizImpl.TicketBizImpl;
 import entity.Cinema;
 import entity.Hall;
 import entity.Movie;
@@ -14,8 +16,15 @@ public class AdminView {
 	MovieBizImpl mbi=new MovieBizImpl();
 	CinemaBizImpl cbi=new CinemaBizImpl();
 	HallBizImpl hbi=new HallBizImpl();
+	SessionBizImpl sbi=new SessionBizImpl();
+	TicketBizImpl tbi=new TicketBizImpl();
 	public void adminView() {
 		while(true) {
+			System.out.println("0.返回上一层(按任意键继续)");
+			int option =scn.nextInt();
+			if(option==0) {
+				break;
+			}
 			adminLogin();
 		}
 	}
@@ -35,8 +44,11 @@ public class AdminView {
 	//管理员操作选择
 	public void adminOperation() {
 		while(true) {
-			System.out.println("1.管理电影2.管理影院3.管理场厅4.管理场次");
+			System.out.println("0.返回上一层1.管理电影2.管理影院3.管理场厅4.管理场次5.查看效益");
 			int option=scn.nextInt();
+			if(option==0) {
+				break;
+			}
 			switch(option) {
 			case 1:
 				movieManager();
@@ -50,16 +62,85 @@ public class AdminView {
 			case 4:
 				SessionManager();
 				break;
+			case 5:
+				fingIncome();
+				break;
 			default:
 				System.out.println("输入错误，重新输入");
 				break;
 			}
 		}
 	}
+	private void fingIncome() {
+		while(true) {
+			System.out.println("0.返回上一层1.电影票房2.影院盈利");
+			int option=scn.nextInt();
+			if(option==0) {
+				break;
+			}
+			switch(option) {
+			case 1:
+				movieIncome();
+				break;
+			case 2:
+				cinemaIncome();
+				break;
+			default:
+				System.out.println("输入错误，重新输入");
+				break;
+			}
+		}
+	}
+	private void cinemaIncome() {
+		tbi.viewCinemaIncome();
+	}
+	private void movieIncome() {
+		tbi.viewMovieIncome();
+	}
+	private void SessionManager() {
+		while(true) {
+			System.out.println("0.返回上一层1.增加场次");
+			int option=scn.nextInt();
+			if(option==0) {
+				break;
+			}
+			switch(option) {
+			case 1:
+				addSession();
+				break;
+			default:
+				System.out.println("输入错误，重新输入");
+				break;
+			}
+		}
+	}
+	private void addSession() {
+		System.out.println("输入电影");
+		int movie_id=scn.nextInt();
+		System.out.println("输入电影院");
+		int cinema_id=scn.nextInt();
+		System.out.println("输入场厅");
+		int hall_id=scn.nextInt();
+		System.out.println("输入播放时间(如2018,5,12,19,25,00分别是年月日时分秒)");
+		String startTime=scn.next();
+		
+		//System.out.println(startTime);
+		
+		System.out.println("输入票价");
+		double price=scn.nextDouble();
+		if(sbi.addSession(movie_id, cinema_id, hall_id, startTime, price)) {
+			System.out.println("添加场次成功");
+		}else {
+			System.out.println("添加场次失败");
+		}
+	}
 	private void hallManager() {
 		while(true) {
-			System.out.println("1.增加场厅2.删除场厅3.修改场厅4.查找场厅");
+			System.out.println("0.返回上一层1.增加场厅2.删除场厅3.修改场厅4.查找场厅");
 			int option=scn.nextInt();
+			if(option==0) {
+				break;
+			}
 			switch(option) {
 			case 1:
 				addHall();
@@ -125,8 +206,11 @@ public class AdminView {
 	}
 	public void cinemaManager() {
 		while(true) {
-			System.out.println("1.增加影院2.删除影院3.修改影院4.查找影院");
+			System.out.println("0.返回上一层1.增加影院2.删除影院3.修改影院4.查找影院");
 			int option=scn.nextInt();
+			if(option==0) {
+				break;
+			}
 			switch(option) {
 			case 1:
 				addCinema();
@@ -184,8 +268,11 @@ public class AdminView {
 	}
 	public void movieManager() {
 		while(true) {
-			System.out.println("1.增加电影2.删除电影3.修改电影4.查找电影");
+			System.out.println("0.返回上一层1.增加电影2.删除电影3.修改电影4.查找电影");
 			int option=scn.nextInt();
+			if(option==0) {
+				break;
+			}
 			switch(option) {
 			case 1:
 				addMovie();
