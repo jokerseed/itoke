@@ -171,7 +171,7 @@ public class AdminView {
 		int cid=scn.nextInt();
 		System.out.println("场厅容量");
 		int capacity=scn.nextInt();
-		if(hbi.update(new Hall(name1,cid), new Hall(name,cid,capacity))) {
+		if(hbi.update(new Hall(name1,cid1), new Hall(name,cid,capacity))) {
 			System.out.println("修改成功");
 		}else {
 			System.out.println("修改失败");

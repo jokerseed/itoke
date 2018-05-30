@@ -3,7 +3,6 @@ package view;
 import java.util.Scanner;
 
 import bizImpl.UserBizImpl;
-import entity.User;
 import util.MyUtil;
 
 public class UserView {
